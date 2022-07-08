@@ -1,5 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
+import os
+
+dirname = os.path.dirname(__file__)
+utils_path = os.path.join(dirname, '../Utils')
+sys.path.append(utils_path)
 
 from utils import euclidean, manhattan, minkowski
 
