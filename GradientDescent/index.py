@@ -1,9 +1,16 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 X = [1, 2, 3]
 y = [0, 0, 0]
+
+# x*w = y
+'''
+1 * w = 0
+2 * w = 0
+3 * w = 0
+
+'''
 
 
 class GradientDescent:
@@ -25,9 +32,10 @@ class GradientDescent:
 
             plt.scatter(w, loss, c='red')
 
-            w = w - lr*self.__gradient(w)
+            w = w - self.lr*self.__gradient(w)
             print('new weight value => {}'.format(w))
 
+        # For plotting
         y_loss = []
         x_weights = np.arange(-10, 11, 0.01)
         for weight in x_weights:
@@ -37,7 +45,9 @@ class GradientDescent:
                 losses.append(self.__cost(diff))
             loss = sum(losses)/len(losses)
             y_loss.append(loss)
-
+        plt.xlabel('Weights')
+        plt.ylabel('Loss')
+        plt.title('Weights vs Loss')
         plt.plot(x_weights, y_loss)
         plt.show()
 
@@ -51,10 +61,5 @@ class GradientDescent:
         return 2*weight
 
 
-w = 7
-
-
-lr = 0.05
-
-gd = GradientDescent(n_epochs=30, lr=0.05)
+gd = GradientDescent(n_epochs=100, lr=0.05)
 gd.fit(X, y)
